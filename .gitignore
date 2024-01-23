@@ -23,7 +23,8 @@
 hs_err_pid*
 
 ### MVN PROJECT ###
-README.md
+mvnw
+mvnw.cmd
 target/
 !**/target/**
 .mvn
