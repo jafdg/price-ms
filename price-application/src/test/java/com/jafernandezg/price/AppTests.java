@@ -118,5 +118,24 @@ public class AppTests {
                 .andExpect(jsonPath("$.currency").value("EUR"));
     }
 
+    @Test
+    void gets_returnException_whenSendEmptyArgument() throws Exception {
+
+        URI uri = new URI("/prices?date=2020-12-16%2021:00:00&productId=35455");
+
+        this.mockMvc.perform(get(uri))
+                .andDo(print())
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void gets_returnException_whenSendBadArgument() throws Exception {
+
+        URI uri = new URI("/prices?date=2020-12-16%2021:00:00&productId=35455&brandId=1ñ");
+
+        this.mockMvc.perform(get(uri))
+                .andDo(print())
+                .andExpect(status().isInternalServerError());
+    }
 
 }
