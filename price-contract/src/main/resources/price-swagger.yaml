@@ -1,0 +1,104 @@
+openapi: 3.0.2
+info:
+  title: Price API
+  description: API to calculate the correct price.
+  version: 0.0.1-SNAPSHOT
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: jafernandezg9@gmail.com
+    name: Julio Alberto Fernández Guerrero
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+
+externalDocs:
+  description: Find out more about Reflectoring
+  url: https://reflectoring.io/about/
+
+paths:
+  /prices:
+    get:
+      operationId: calculatePrices
+      tags:
+        - Prices
+      summary: Returns a result of the calculation.
+      parameters:
+        - name: date
+          in: query
+          description: The date that the calculation will be realised.
+          required: true
+          schema:
+            type: string
+            pattern: "yyyy-MM-dd HH:mm:ss"
+        - name: productId
+          in: query
+          description: The identification of the product.
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: brandId
+          in: query
+          description: The identification of the brand.
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Price'
+        400:
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        404:
+          description: Not Found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        500:
+          description: Error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+    Price:
+      type: object
+      properties:
+        brandId:
+          type: integer
+          format: int64
+        startDate:
+          type: string
+        endDate:
+          type: string
+        priceList:
+          type: integer
+          format: int32
+        productId:
+          type: integer
+          format: int64
+        priority:
+          type: integer
+          format: int32
+        price:
+          type: number
+          format: double
+        currency:
+          type: string
