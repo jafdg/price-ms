@@ -26,83 +26,83 @@ public class AppTests {
     @Test
     void test1() throws Exception {
 
-        URI uri = new URI("/prices?date=2020-12-14%2010:00:00&productId=35455&brandId=1");
+        URI uri = new URI("/prices?date=2020-06-14%2010:00:00&productId=35455&brandId=1");
 
         this.mockMvc.perform(get(uri))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.brandId").value(1))
-                .andExpect(jsonPath("$.startDate").value("2020-06-15 16:00:00"))
+                .andExpect(jsonPath("$.startDate").value("2020-06-14 00:00:00"))
                 .andExpect(jsonPath("$.endDate").value("2020-12-31 23:59:59"))
-                .andExpect(jsonPath("$.priceList").value(4))
+                .andExpect(jsonPath("$.priceList").value(1))
                 .andExpect(jsonPath("$.productId").value(35455))
-                .andExpect(jsonPath("$.priority").value(1))
-                .andExpect(jsonPath("$.price").value(38.95))
+                .andExpect(jsonPath("$.priority").value(0))
+                .andExpect(jsonPath("$.price").value(35.5))
                 .andExpect(jsonPath("$.currency").value("EUR"));
     }
 
     @Test
     void test2() throws Exception {
 
-        URI uri = new URI("/prices?date=2020-12-14%2016:00:00&productId=35455&brandId=1");
+        URI uri = new URI("/prices?date=2020-06-14%2016:00:00&productId=35455&brandId=1");
 
         this.mockMvc.perform(get(uri))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.brandId").value(1))
-                .andExpect(jsonPath("$.startDate").value("2020-06-15 16:00:00"))
-                .andExpect(jsonPath("$.endDate").value("2020-12-31 23:59:59"))
-                .andExpect(jsonPath("$.priceList").value(4))
+                .andExpect(jsonPath("$.startDate").value("2020-06-14 15:00:00"))
+                .andExpect(jsonPath("$.endDate").value("2020-06-14 18:30:00"))
+                .andExpect(jsonPath("$.priceList").value(2))
                 .andExpect(jsonPath("$.productId").value(35455))
                 .andExpect(jsonPath("$.priority").value(1))
-                .andExpect(jsonPath("$.price").value(38.95))
+                .andExpect(jsonPath("$.price").value(25.45))
                 .andExpect(jsonPath("$.currency").value("EUR"));
     }
 
     @Test
     void test3() throws Exception {
 
-        URI uri = new URI("/prices?date=2020-12-14%2021:00:00&productId=35455&brandId=1");
+        URI uri = new URI("/prices?date=2020-06-14%2021:00:00&productId=35455&brandId=1");
 
         this.mockMvc.perform(get(uri))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.brandId").value(1))
-                .andExpect(jsonPath("$.startDate").value("2020-06-15 16:00:00"))
+                .andExpect(jsonPath("$.startDate").value("2020-06-14 00:00:00"))
                 .andExpect(jsonPath("$.endDate").value("2020-12-31 23:59:59"))
-                .andExpect(jsonPath("$.priceList").value(4))
+                .andExpect(jsonPath("$.priceList").value(1))
                 .andExpect(jsonPath("$.productId").value(35455))
-                .andExpect(jsonPath("$.priority").value(1))
-                .andExpect(jsonPath("$.price").value(38.95))
+                .andExpect(jsonPath("$.priority").value(0))
+                .andExpect(jsonPath("$.price").value(35.5))
                 .andExpect(jsonPath("$.currency").value("EUR"));
     }
 
     @Test
     void test4() throws Exception {
 
-        URI uri = new URI("/prices?date=2020-12-15%2010:00:00&productId=35455&brandId=1");
+        URI uri = new URI("/prices?date=2020-06-15%2010:00:00&productId=35455&brandId=1");
 
         this.mockMvc.perform(get(uri))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.brandId").value(1))
-                .andExpect(jsonPath("$.startDate").value("2020-06-15 16:00:00"))
-                .andExpect(jsonPath("$.endDate").value("2020-12-31 23:59:59"))
-                .andExpect(jsonPath("$.priceList").value(4))
+                .andExpect(jsonPath("$.startDate").value("2020-06-15 00:00:00"))
+                .andExpect(jsonPath("$.endDate").value("2020-06-15 11:00:00"))
+                .andExpect(jsonPath("$.priceList").value(3))
                 .andExpect(jsonPath("$.productId").value(35455))
                 .andExpect(jsonPath("$.priority").value(1))
-                .andExpect(jsonPath("$.price").value(38.95))
+                .andExpect(jsonPath("$.price").value(30.5))
                 .andExpect(jsonPath("$.currency").value("EUR"));
     }
 
     @Test
     void test5() throws Exception {
 
-        URI uri = new URI("/prices?date=2020-12-16%2021:00:00&productId=35455&brandId=1");
+        URI uri = new URI("/prices?date=2020-06-16%2021:00:00&productId=35455&brandId=1");
 
         this.mockMvc.perform(get(uri))
                 .andDo(print())

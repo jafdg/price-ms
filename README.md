@@ -1,5 +1,32 @@
 # PRICE MS
 
+### Realización del ejercicio
+Para la realización del ejercicio propuesto en el apartado [Enunciado](#item1), se ha optado por seguir un modelo basado en un arquitectura hexagonal para que sea más fácil su futura escalabilidad, entre otras opciones, y se ha separado el proyecto en diferentes módulos.
+Cada módulo realiza una función diferente y aislada del resto de módulos, en este caso contamos con 5 módulos:
+- Contract
+- Application
+- Presentation
+- Service
+- Persistence
+
+En el módulo `Contract` se encuentra el contrato del proyecto, desarrollado con Swagger y siguiendo los principios de Api/Contract Firts para la realización de este ejercicio.  
+En el módulo `Application` se encuentra la clase encargada de arrancar el proyecto.  
+En el módulo `Presentation` se encuentran los "Controller" y los "Mappers" necesarios para recibir las llamadas exteriores y que sean correctamente utilizadas en el proyecto.  
+En el módulo `Service` se encuentran los servicios encargados de la lógica de negocio y sus respectivos "Mappers".  
+En el módulo `Persistence` se encuentran los "DAO" y las clases e interfaces necesarias para interactuar con la base de datos H2 en memoria. 
+
+Para completar este ejercicio se ha hecho uso de los principios "SOLID" y "Clean Code" para facilitar un código robusto y limpio.  
+A su vez, se ha hecho uso de patrones de diseño y buenas prácticas cómo el uso de TDD, "Controller Advice" para controlar las excepciones, uso de una base de datos por microservicio, uso de "DAOs" con el patrón Singleton, uso de Api/Contract First, librerías cómo Lombok o MapStruct para faciltiar la lectura de código y el uso de logs para debuggers y seguir trazas del código.
+
+Para complementar al enunciado del ejercicio, se ha decidido crear 2 tablas más en base de datos, la tabla `products` y la tabla `brands`, para dar mayor robustez a la base de datos y perfeccionar las "Foreign Key" descritas en el enunciado.
+
+Al ser un ejercicio aislado y no expuesto para front-end no es necesario, pero sería facil aplicar un patrón Backend For Frontend (BFF) y así aislar el artefacto `price-ms` del front-end mediante un artefacto intermedio llamado `price-bff`.
+
+También podría "Dockerizarse" el proyecto y que fuese orquestado por Kubernetes o Docker-Compose a la hora de arrancar, crear réplicas, pero al ser un ejercicio pequeño no se ha creído necesario.
+
+En el ejercicio, para la realización de tests se han utilizado tests unitarios y tests de integración con librería cómo JUnit o Mockito, además de herramientas externas cómo Postman.
+
+<a name="item1"></a>
 ### Enunciado
 En la base de datos de comercio electrónico de la compañía disponemos de la tabla `PRICES` que refleja el precio final (PVP) y la tarifa que aplica a un producto de una cadena entre unas fechas determinadas. A continuación, se muestra un ejemplo de la tabla con los campos relevantes:
 
